@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
 
 class AddFriend extends StatefulWidget {
@@ -20,18 +19,6 @@ class _AddFriendState extends State<AddFriend> {
   final database = FirebaseFirestore.instance;
   final emailController = TextEditingController();
 
-  void deleteDB() async {
-    final dbPath = await sql.getDatabasesPath();
-    await sql.deleteDatabase(path.join(dbPath, 'ugchats.db'));
-    await sql.deleteDatabase(path.join(dbPath, 'ugchats1.db'));
-  }
-
-  void addFriendSql(String email) async {
-    await database.collection('users').doc(auth.currentUser!.uid).update({
-      'friends': FieldValue.arrayUnion([email])
-    });
-  }
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -42,20 +29,6 @@ class _AddFriendState extends State<AddFriend> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    void search() async {
-      var user = await database
-          .collection('users')
-          .where('email', isEqualTo: emailController.text)
-          .get();
-      if (user.docs.isEmpty) {
-        print('Entered Nothing');
-        return;
-      }
-      addFriendSql(
-        user.docs[0]['email'],
-      );
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -94,7 +67,6 @@ class _AddFriendState extends State<AddFriend> {
               ElevatedButton(
                 onPressed: () {
                   widget.addFriend(emailController.text, auth.currentUser!.uid);
-                  // search();
                   Navigator.pop(context);
                 },
                 child: const Text('Search'),
