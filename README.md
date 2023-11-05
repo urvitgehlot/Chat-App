@@ -7,7 +7,7 @@ Simple Chatting App made using Flutter and Firebase.
 + one to one Chatting and can share Image also.
 + Responsive and Clean UI
 
-## Still in Work
+## Still Working On It
 > Note: This Project is not Completed as profile view and setting page are not done yet.
 
 ## Getting Started
