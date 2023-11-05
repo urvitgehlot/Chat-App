@@ -1,12 +1,21 @@
 # chat_app
 
-## Still in Work 
+Simple Chatting App made using Flutter and Firebase.
 
-A new Flutter project.
+## Features
++ User Account With Profile Pic, Name & Email.
++ one to one Chatting and can share Image also.
++ Responsive and Clean UI
+
+## Still in Work
++ Note: This Project is not Completed as profile view and setting page are not done yet.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project does not Include Firebase_option.dart, google-services.json, GoogleService-Info.plist files.
+To Use this Project Simply add lib and pubspec.yaml files to your project. 
+
+
 
 A few resources to get you started if this is your first Flutter project:
 
