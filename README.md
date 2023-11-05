@@ -8,7 +8,7 @@ Simple Chatting App made using Flutter and Firebase.
 + Responsive and Clean UI
 
 ## Still in Work
-+ Note: This Project is not Completed as profile view and setting page are not done yet.
+> Note: This Project is not Completed as profile view and setting page are not done yet.
 
 ## Getting Started
 
