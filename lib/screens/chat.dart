@@ -96,10 +96,11 @@ class _ChatState extends State<Chat> {
     if (msgController.text.trim().isEmpty && imagePicked.isEmpty) return;
 
     var timeStamp = DateTime.now();
-    // var sender = auth.currentUser!.email!.trim().toLowerCase();
-    var sender = database.collection('users').where('email',
-        isEqualTo: auth.currentUser!.email!.trim().toLowerCase());
+    var sender = auth.currentUser!.email!.trim().toLowerCase();
+    // var sender = database.collection('users').where('email',
+    //     isEqualTo: auth.currentUser!.email!.trim().toLowerCase());
     var reciever = widget.user['email'].toString().trim().toLowerCase();
+    // print(sender)
 
     var temp = await database
         .collection('users')

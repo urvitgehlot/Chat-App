@@ -38,21 +38,24 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     } else {
       if (!context.mounted) return;
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => const Authenticator(),
-      ));
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const Authenticator(),
+        ));
+      });
     }
   }
 
   @override
   void initState() {
-    checkLoginStatus();
+    // checkLoginStatus();
     // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    checkLoginStatus();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Center(

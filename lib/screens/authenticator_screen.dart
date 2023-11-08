@@ -203,7 +203,7 @@ class _AuthenticatorState extends State<Authenticator> {
             )
           : SingleChildScrollView(
               child: Container(
-                height: size.height + 60,
+                height: size.height,
                 // width:,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -215,7 +215,7 @@ class _AuthenticatorState extends State<Authenticator> {
                     Icon(
                       Icons.chat_bubble_outline,
                       color: Color.fromRGBO(28, 189, 200, 1),
-                      size: size.height / 8,
+                      size: size.height / 7,
                     ),
                     Text(
                       'WELCOME',
