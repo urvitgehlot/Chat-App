@@ -2,7 +2,7 @@
 
 Simple Chatting App made using Flutter and Firebase.
 
-<img src="https://github.com/urvitgehlot/Chat-App/assets/73014260/14bc180f-94e1-4928-8cba-ad33528ff9ef"  width="237" height="500"  >
+<img src="https://github.com/urvitgehlot/Chat-App/assets/73014260/14bc180f-94e1-4928-8cba-ad33528ff9ef"  width="237" height="500">
 ![Screenshot_2023-11-10-10-54-32-759_com example chat_app](https://github.com/urvitgehlot/Chat-App/assets/73014260/14bc180f-94e1-4928-8cba-ad33528ff9ef = 150x300)
 ![Screenshot_2023-11-10-10-54-17-995_com example chat_app](https://github.com/urvitgehlot/Chat-App/assets/73014260/a99d002c-6a1f-4038-85f7-f2930fd3a5c8)
 ![Screenshot_2023-11-10-10-53-33-241_com example chat_app](https://github.com/urvitgehlot/Chat-App/assets/73014260/0a9d8e11-9584-4fcd-853d-36f8054dc64c)
