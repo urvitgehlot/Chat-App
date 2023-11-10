@@ -12,6 +12,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool notificationMuted = false;
   final database = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
 
@@ -23,6 +24,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     String imgUrl = await storage.ref(widget.user['dp']).getDownloadURL();
 
     return imgUrl;
+  }
+
+  void getMutualFriends() {}
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
@@ -125,7 +134,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       if (snapshot.hasData) {
                         return Image.network(snapshot.data!);
                       } else {
-                        return Image.asset('assets/images/');
+                        return Image.asset(
+                          'assets/images/user.png',
+                        );
                       }
                     },
                   ),
@@ -173,8 +184,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       inactiveTrackColor: Colors.white,
                       trackOutlineColor:
                           MaterialStateProperty.all(Colors.black),
-                      onChanged: (value) {},
-                      value: false,
+                      onChanged: (value) {
+                        setState(() {
+                          notificationMuted = value;
+                        });
+                      },
+                      value: notificationMuted,
                     ),
                   ),
                 ],
@@ -210,7 +225,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
               decoration: BoxDecoration(
                 color: Color.fromRGBO(198, 214, 214, 1),
               ),
-              child: Text('asdf'),
+              child: Column(
+                children: [
+                  Text("Mutual Friends"),
+                  // Container(
+                  //   child: ListView.builder(
+                  //     itemCount: null,
+                  //     itemBuilder: (context, index) {
+                  //       return Card(
+                  //         child: ListTile(
+                  //           leading: FutureBuilder(),
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // )
+                ],
+              ),
             ),
           ],
         ),

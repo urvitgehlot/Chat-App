@@ -25,6 +25,8 @@ class Chat extends StatefulWidget {
 class _ChatState extends State<Chat> {
   TextEditingController msgController = TextEditingController();
 
+  bool isSending = false;
+
   final auth = FirebaseAuth.instance;
   final database = FirebaseFirestore.instance;
   final storage = FirebaseStorage.instance;
@@ -94,6 +96,9 @@ class _ChatState extends State<Chat> {
 
   void sendMsg() async {
     if (msgController.text.trim().isEmpty && imagePicked.isEmpty) return;
+    setState(() {
+      isSending = true;
+    });
 
     var timeStamp = DateTime.now();
     var sender = auth.currentUser!.email!.trim().toLowerCase();
@@ -157,6 +162,9 @@ class _ChatState extends State<Chat> {
 
     msgController.text = '';
     FocusManager.instance.primaryFocus?.unfocus();
+    setState(() {
+      isSending = false;
+    });
   }
 
   void readMsg(String id) async {
@@ -431,13 +439,13 @@ class _ChatState extends State<Chat> {
                                   reverse: true,
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
-                                    String? imgUrl;
+                                    // String? imgUrl;
                                     bool isSenderIsUser =
                                         snapshot.data!.docs[index]['sender'] ==
                                             auth.currentUser!.email;
-                                    DateTime time = (snapshot.data!.docs[index]
-                                            ['time'])
-                                        .toDate();
+                                    // DateTime time = (snapshot.data!.docs[index]
+                                    //         ['time'])
+                                    //     .toDate();
 
                                     if (isSenderIsUser == false &&
                                         snapshot.data!.docs[index]['read'] ==
@@ -445,14 +453,15 @@ class _ChatState extends State<Chat> {
                                       readMsg(snapshot.data!.docs[index].id);
                                       print('reading');
                                     }
-
-                                    if (isSenderIsUser) {
-                                      return SenderMsgBox(
-                                          snapshot.data!.docs[index].data());
-                                    } else {
-                                      return RecieveMsgBox(
-                                          snapshot.data!.docs[index].data());
-                                    }
+                                    return Container(
+                                      margin: EdgeInsets.symmetric(vertical: 5),
+                                      child: isSenderIsUser
+                                          ? SenderMsgBox(
+                                              snapshot.data!.docs[index].data())
+                                          : RecieveMsgBox(snapshot
+                                              .data!.docs[index]
+                                              .data()),
+                                    );
                                   },
                                 );
                               } else {
@@ -495,12 +504,20 @@ class _ChatState extends State<Chat> {
                               },
                               icon: const Icon(Icons.attachment),
                             ),
-                            IconButton(
-                              onPressed: () {
-                                sendMsg();
-                              },
-                              icon: Icon(Icons.send),
-                            )
+                            isSending
+                                ? Container(
+                                    width: 24,
+                                    height: 24,
+                                    child: const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  )
+                                : IconButton(
+                                    onPressed: () {
+                                      sendMsg();
+                                    },
+                                    icon: const Icon(Icons.send),
+                                  ),
                           ],
                         ),
                       )
@@ -635,18 +652,27 @@ class _ChatState extends State<Chat> {
                                 margin: EdgeInsets.only(left: 30),
                                 width: size.width - 150,
                                 child: TextField(
-                                  decoration: InputDecoration(
+                                  controller: msgController,
+                                  decoration: const InputDecoration(
                                     hintText: 'Add Message',
                                     border: InputBorder.none,
                                   ),
                                 ),
                               ),
-                              TextButton(
-                                onPressed: () {
-                                  sendMsg();
-                                },
-                                child: Icon(Icons.send),
-                              ),
+                              isSending
+                                  ? Container(
+                                      width: 24,
+                                      height: 24,
+                                      child: const Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    )
+                                  : IconButton(
+                                      onPressed: () {
+                                        sendMsg();
+                                      },
+                                      icon: const Icon(Icons.send),
+                                    ),
                             ],
                           ),
                         ),

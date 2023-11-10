@@ -60,19 +60,21 @@ class _RecieveMsgBoxState extends State<RecieveMsgBox> {
                             ).toList(),
                           )
                         : Container(),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                      // color: Color.fromRGBO(217, 217, 217, 1),
-                      // decoration: BoxDecoration(),
-                      child: Text(
-                        widget.msgMap['msg'],
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(104, 136, 143, 1),
-                            fontSize: 16),
+                    if ((widget.msgMap['msg']).isNotEmpty)
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                        // color: Color.fromRGBO(217, 217, 217, 1),
+                        // decoration: BoxDecoration(),
+                        child: Text(
+                          widget.msgMap['msg'],
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(104, 136, 143, 1),
+                              fontSize: 16),
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),

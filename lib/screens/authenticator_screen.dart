@@ -101,6 +101,7 @@ class _AuthenticatorState extends State<Authenticator> {
         isLoading = false;
       });
       fun.call('confirm password is not correct');
+      return;
     }
 
     try {

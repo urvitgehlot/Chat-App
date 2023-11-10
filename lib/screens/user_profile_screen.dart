@@ -162,7 +162,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
             Container(
               height: 50,
-              margin: EdgeInsets.symmetric(horizontal: 30),
+              margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               constraints: BoxConstraints(minWidth: 150, maxWidth: 400),
               // color: Colors.grey,
               child: Stack(
