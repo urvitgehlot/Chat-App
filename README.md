@@ -1,5 +1,7 @@
 # chat_app
 
+
+
 Chat App in Flutter
 Simple Chatting App made using Flutter and Firebase.
 
