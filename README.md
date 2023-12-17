@@ -22,6 +22,8 @@ Simple Chatting App made using Flutter and Firebase.
 ## Still Working On It
 > Note: This Project is not Completed as profile view and setting page are not done yet.
 
+Figma UI/UX By [Suraj Saraswat](https://github.com/blastersuraj)
+
 ## Getting Started
 
 This project does not Include Firebase_option.dart, google-services.json, GoogleService-Info.plist files.
